@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Add a meal{% endblock %}
+
+{% block content %}
+<h1>{% block heading %}Add a meal{% endblock %}</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+        <label>{{field.label}}</label>
+        {{field}}
+        {{field.errors}}
+    </div>
+    {% endfor %}
+    <button class="submit primary" type="submit">{% block submit %}Add{% endblock %}</button>
+</form>
+{% endblock %}

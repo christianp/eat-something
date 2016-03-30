@@ -1,0 +1,59 @@
+.description {
+  padding: 1em;
+  background: #f9f9ec;
+  color: #2e4372;
+}
+.recipe {
+  font-size: 0.8rem;
+}
+.recipe:not(:last-child) {
+  border-bottom: 2px dashed;
+}
+.recipe section h1 {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.recipe .method .column {
+  display: flex;
+}
+.recipe .method .column .ingredients {
+  flex-basis: 15em;
+  flex-grow: 0;
+  margin-right: 1em;
+}
+.recipe .method .column .instructions {
+  flex-grow: 1;
+  flex-basis: 50%;
+}
+@media screen and (min-width: 768px) {
+  .recipe .method {
+    display: flex;
+  }
+  .recipe .method .ingredients {
+    flex-basis: 15em;
+    flex-grow: 0;
+    margin-right: 1em;
+  }
+  .recipe .method .instructions {
+    flex-grow: 1;
+    flex-basis: 50%;
+  }
+}
+@media print {
+  .recipe .method {
+    display: flex;
+  }
+  .recipe .method .ingredients {
+    flex-basis: 15em;
+    flex-grow: 0;
+    margin-right: 1em;
+  }
+  .recipe .method .instructions {
+    flex-grow: 1;
+    flex-basis: 50%;
+  }
+}
+.category:not(:last-child)::after {
+  content: ', ';
+}

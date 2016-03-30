@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load font %}
+{% load load %}
+
+{% block stylesheets %}
+    {{block.super}}
+    {% css 'random_meal' %}
+{%endblock stylesheets %}
+
+{% block content %}
+<form class="chooser" method="POST" action="">
+    {% csrf_token %}
+    <input type="hidden" name="meal" value="{{meal.pk}}"/>
+
+    <header>
+        <h1 class="font-blackjack">{{category.name}}</h1>
+        <hr>
+        <h2 class="meal-name {% random_font %}">{{meal.name}}</h2>
+    </header>
+
+    <div class="buttons">
+        <button type="submit" name="action" value="reject">Nope</button>
+        <button type="submit" name="action" value="accept">Yep</button>
+    </div>
+</form>
+{% endblock content %}

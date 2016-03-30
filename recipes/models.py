@@ -1,0 +1,61 @@
+from django.db import models
+from django.core.urlresolvers import reverse
+from django.utils.text import slugify
+from django.dispatch import receiver
+from random import random
+
+class MealCategory(models.Model):
+    name = models.CharField(max_length=254)
+    slug = models.SlugField(editable=False,default='')
+
+    def __str__(self):
+        return self.name
+
+    def random_meal(self):
+        total = self.meals.aggregate(total=models.Sum('weight'))['total']
+        r = random()*total
+        acc = 0
+        for meal in self.meals.all():
+            acc += meal.weight
+            if acc >= r:
+                return meal
+
+    def get_absolute_url(self):
+        return reverse('index')
+
+@receiver(models.signals.pre_save,sender=MealCategory)
+def set_slug_pre_save(sender,instance,**kwargs):
+    instance.slug = slugify(instance.name)
+
+# Create your models here.
+class Meal(models.Model):
+    category = models.ManyToManyField(MealCategory,related_name='meals')
+    name = models.CharField(max_length=254)
+    description = models.TextField(blank=True)
+    weight = models.FloatField(default=1)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('meal',args=(self.pk,))
+
+class Recipe(models.Model):
+    meal = models.ForeignKey(Meal,related_name='recipes')
+    url = models.URLField(blank=True,help_text='URL of the recipe')
+    reference = models.CharField(max_length=254,blank=True,help_text='A page number in a book')
+    ingredients = models.TextField(blank=True)
+    instructions = models.TextField(blank=True)
+    time = models.DurationField()
+
+    def __str__(self):
+        return 'Recipe for {}'.format(self.meal.name)
+
+    def ingredients_list(self):
+        return self.ingredients.split('\n')
+
+    def get_absolute_url(self):
+        return reverse('meal',args=(self.pk,))
+
+    def get_absolute_url(self):
+        return reverse('meal',args=(self.meal.pk,))

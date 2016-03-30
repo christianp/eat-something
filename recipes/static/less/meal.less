@@ -1,0 +1,49 @@
+@import "variables.less";
+
+.description {
+    padding: 1em;
+    background: @text-color;
+    color: @page-bg;
+}
+
+
+.recipe {
+    font-size: 0.8rem;
+
+    &:not(:last-child) {
+        border-bottom: 2px dashed;
+    }
+
+    section h1 {
+        font-size: 1.1em;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .method {
+
+        .column {
+            display: flex;
+            
+            .ingredients {
+                flex-basis: 15em;
+                flex-grow: 0;
+                margin-right: 1em;
+            }
+            .instructions {
+                flex-grow: 1;
+                flex-basis: 50%;
+            }
+        }
+        @media @tablet {
+            .column;
+        }
+        @media print {
+            .column;
+        }
+    }
+}
+
+.category:not(:last-child)::after {
+    content: ', ';
+}

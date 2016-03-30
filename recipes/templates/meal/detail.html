@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load markdown %}
+{% load time %}
+{% load load %}
+
+{% block title %}{{meal.name}} - {{block.super}}{% endblock %}
+
+{% block stylesheets %}
+{{block.super}}
+{% css 'meal' %}
+{% endblock stylesheets %}
+
+{% block content %}
+<h1>
+    {{meal.name}}
+    <a class="pull-right btn link" title="Edit this meal" href="{% url 'meal_edit' meal.pk %}">🖉</a>
+</h1>
+<h2 class="subtitle categories">{% for category in meal.category.all %}<span class="category"><a href="{{category.get_absolute_url}}">{{category.name}}</a></span>{% endfor %}</h2>
+
+<div class="description">{{meal.description}}</div>
+
+<hr>
+
+{% if meal.recipes.exists %}
+    <h2>Recipe{{meal.recipes.count|pluralize}} </h2>
+    <ul>
+    {% for recipe in meal.recipes.all %}
+        <li class="recipe clearfix">
+            <section class="time">
+                <p>⏱ {{recipe.time|timedelta}}</p>
+            </section>
+            {% if recipe.url %}
+            <section class="url">
+                <p>🔗 <a target="_blank" href="{{recipe.url}}">{{recipe.url}}</a></p>
+            </section>
+            {% endif %}
+            {% if recipe.reference %}
+            <section class="reference">
+                <p><cite>{{recipe.reference}}</cite></p>
+            </section>
+            {% endif %}
+
+            <div class="method">
+                {% if recipe.ingredients %}
+                <section class="ingredients">
+                    <h3>Ingredients</h3>
+                    {{recipe.ingredients|markdown}}
+                </section>
+                {% endif %}
+                
+                {% if recipe.instructions %}
+                <section class="instructions">
+                    <h3>Instructions</h3>
+                    {{recipe.instructions|markdown}}
+                </section>
+                {% endif %}
+            </div>
+
+            <form method="POST" action="{% url 'recipe_delete' recipe.pk %}">
+                {% csrf_token %}
+                <p><button class="warning" type="submit">❌ Delete this recipe</button></p>
+            </form>
+
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+<p>No recipes</p>
+{% endif %}
+
+<p><a class="btn" href="{% url 'meal_add_recipe' meal.pk %}">+ Add a recipe</a></p>
+
+<hr>
+<form method="POST" action="{% url 'meal_delete' meal.pk %}">
+    {% csrf_token %}
+    <p><a class="btn warning" href="{% url 'meal_delete' meal.pk %}">❌ Delete this meal</a></p>
+</form>
+
+{% endblock content %}

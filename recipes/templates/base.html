@@ -1,0 +1,39 @@
+{% load staticfiles %}
+{% load load %}
+{% load font %}
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}Pick a Meal{% endblock %}</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+        {% for font in SCRIPT_FONTS %}
+        <link rel="stylesheet" href="{% static 'fonts/'|add:font|add:"_regular/stylesheet.css" %}">
+        {% endfor %}
+        <style type="text/css">
+            {% for font in SCRIPT_FONTS %}
+            .font-{{font}} {
+                font-family: '{{font}}regular';
+            }
+            {% endfor %}
+        </style>
+
+        {% block stylesheets %}
+            {% css 'base' %}
+        {% endblock stylesheets %}
+
+        {% block scripts %}
+        {% endblock scripts %}
+    </head>
+    <body>
+        <header>
+            <h1><a href="{% url 'index' %}"><span class="food-emoji">🍴</span> Pick a Meal <span class="food-emoji">{% choice "🍇🍈🍉🍊🍋🍌🍍🍎🍏🍐🍑🍒🍓🍅🍆🌽🌶🍄🌰🍞🍖🍗🍔🍟🍕🍲🍱🍘🍙🍚🍛🍜🍝🍠🍢🍣🍤🍥🍡🍦🍧🍨🍩🍪🎂🍰🍫🍬🍭🍮🍯🍼☕🍵🍶🍷🍸🍹🍺🍻🍳" %}</span></a></h1>
+        </header>
+
+        <div class="content">
+        {% block content %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

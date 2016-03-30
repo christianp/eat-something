@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1><a href="{{object.get_absolute_url}}">{{object}}</a></h1>
+<form method="POST" action="">
+    {% csrf_token %}
+    <p>Sure?</p>
+    <button type="submit" class="full-width warning">Delete</button>
+</form>
+{% endblock content %}
