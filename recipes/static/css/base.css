@@ -82,7 +82,7 @@
 }
 @media screen and (min-width: 768px) {
   .content {
-    max-width: 800px;
+    max-width: 90%;
   }
 }
 h1,
@@ -91,6 +91,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: 'enriquetaregular', serif;
   font-weight: bold;
 }
 a {
@@ -98,8 +99,7 @@ a {
   font-weight: bold;
   text-decoration: none;
 }
-ul:not(.normal),
-ol:not(.normal) {
+ul:not(.normal) {
   list-style: none;
   padding-left: 0;
 }

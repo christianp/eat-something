@@ -13,7 +13,7 @@
     {% csrf_token %}
     <input type="hidden" name="meal" value="{{meal.pk}}"/>
 
-    <h1 class="meal-name font-blackjack">{{meal.name}}</h1>
+    <h1 class="meal-name">{{meal.name}}</h1>
     {% if meal.time %}
         <p>⏱ {{meal.time|timedelta}}</p>
     {% endif %}

@@ -8,6 +8,9 @@ class MealCategory(models.Model):
     name = models.CharField(max_length=254)
     slug = models.SlugField(editable=False,default='')
 
+    class Meta:
+        ordering = ('name',)
+
     def __str__(self):
         return self.name
 

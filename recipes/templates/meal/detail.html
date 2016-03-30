@@ -24,18 +24,19 @@
 <hr>
 
 {% if meal.recipes.exists %}
-    <h2>Recipe{{meal.recipes.count|pluralize}} </h2>
     <ul>
     {% for recipe in meal.recipes.all %}
         <li class="recipe clearfix">
             <a class="pull-right btn link" title="Edit this recipe" href="{% url 'recipe_edit' recipe.pk %}">🖉</a>
-            <section class="time">
-                <p>⏱ {{recipe.time|timedelta}}</p>
-            </section>
-            {% if recipe.url %}
-            <section class="url">
-                <p>🔗 <a target="_blank" href="{{recipe.url}}">{{recipe.url}}</a></p>
-            </section>
+            <header>
+                <section class="time">
+                    <p>⏱ {{recipe.time|timedelta}}</p>
+                </section>
+                {% if recipe.url %}
+                <section class="url">
+                    <p>🔗 <a target="_blank" href="{{recipe.url}}">{{recipe.url}}</a></p>
+                </section>
+            </header>
             {% endif %}
             {% if recipe.reference %}
             <section class="reference">

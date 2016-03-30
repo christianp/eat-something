@@ -6,11 +6,15 @@
   }
 }
 .recipe {
-  font-size: 0.8rem;
+  font-size: 1rem;
   width: 100%;
 }
 .recipe:not(:last-child) {
   border-bottom: 2px dashed;
+}
+.recipe header section {
+  display: inline-block;
+  margin-right: 2em;
 }
 .recipe section h1 {
   font-size: 1.1em;
