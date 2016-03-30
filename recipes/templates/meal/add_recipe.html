@@ -3,7 +3,7 @@
 {% block title %}Add a recipe for {{meal.name}}{% endblock %}
 
 {% block content %}
-    <h1>Add a recipe for {{meal.name}}</h1>
+    <h1>{% block content_title %}Add a recipe for {{meal.name}}{% endblock %}</h1>
     <form method="POST" action="">
         {% csrf_token %}
         {% for field in form.hidden_fields %}{{field}}{% endfor %}
@@ -14,6 +14,6 @@
             {{field.errors}}
         </div>
         {% endfor %}
-        <button type="submit">Add</button>
+        <button type="submit">{% block submit_text %}Add{% endblock %}</button>
     </form>
 {% endblock %}

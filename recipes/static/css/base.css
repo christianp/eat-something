@@ -46,31 +46,31 @@
     color: #f9f9ec;
   }
 }
-header {
+#header {
   text-align: center;
 }
 @media print {
-  header {
+  #header {
     display: none;
   }
 }
-header h1 {
+#header h1 {
   font-size: 1.5em;
-  margin: 0;
+  margin: 0.1em;
 }
 @media screen and (min-width: 768px) {
-  header h1 {
+  #header h1 {
     font-size: 2.5em;
   }
 }
-header h1 .food-emoji {
+#header h1 .food-emoji {
   font-weight: normal;
 }
-header a {
+#header a {
   text-decoration: none;
   color: #f9f9ec;
 }
-header::after {
+#header::after {
   content: '';
   width: 100%;
   border-bottom: 3px solid;
@@ -108,13 +108,14 @@ li {
 }
 button,
 .btn {
+  font-weight: normal;
   cursor: pointer;
   display: inline-block;
   border: none;
   background: #dfdf9f;
   padding: 0.2em 0.5em;
   text-decoration: none;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
 @media print {
   button,
@@ -125,6 +126,10 @@ button,
 button:not(.link),
 .btn:not(.link) {
   color: black;
+}
+button.large,
+.btn.large {
+  font-size: 1.5rem;
 }
 button.warning,
 .btn.warning {
@@ -188,6 +193,9 @@ form textarea {
   border: none;
   background: #eee;
   padding: 0.6em;
+}
+form textarea {
+  font-size: 0.8rem;
 }
 hr {
   border: 1px solid;

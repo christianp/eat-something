@@ -13,11 +13,13 @@
 {% block content %}
 <h1>
     {{meal.name}}
-    <a class="pull-right btn link" title="Edit this meal" href="{% url 'meal_edit' meal.pk %}">🖉</a>
+    <a class="pull-right btn link large" title="Edit this meal" href="{% url 'meal_edit' meal.pk %}">🖉</a>
 </h1>
 <h2 class="subtitle categories">{% for category in meal.category.all %}<span class="category"><a href="{{category.get_absolute_url}}">{{category.name}}</a></span>{% endfor %}</h2>
 
+{% if meal.description %}
 <div class="description">{{meal.description}}</div>
+{% endif %}
 
 <hr>
 
@@ -26,6 +28,7 @@
     <ul>
     {% for recipe in meal.recipes.all %}
         <li class="recipe clearfix">
+            <a class="pull-right btn link" title="Edit this recipe" href="{% url 'recipe_edit' recipe.pk %}">🖉</a>
             <section class="time">
                 <p>⏱ {{recipe.time|timedelta}}</p>
             </section>
@@ -56,10 +59,7 @@
                 {% endif %}
             </div>
 
-            <form method="POST" action="{% url 'recipe_delete' recipe.pk %}">
-                {% csrf_token %}
-                <p><button class="warning" type="submit">❌ Delete this recipe</button></p>
-            </form>
+            <p><a class="btn warning" href="{% url 'recipe_delete' recipe.pk %}">❌ Delete this recipe</a></p>
 
         </li>
     {% endfor %}

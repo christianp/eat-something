@@ -60,7 +60,7 @@ class UpdateMealView(generic.UpdateView):
 
 class AddRecipeView(generic.CreateView):
     model = Recipe
-    form_class = forms.CreateRecipe
+    form_class = forms.Recipe
     template_name = 'meal/add_recipe.html'
 
     def dispatch(self,request,pk,*args):
@@ -90,3 +90,8 @@ class DeleteRecipeView(generic.DeleteView):
 
     def get_success_url(self):
         return self.object.meal.get_absolute_url()
+
+class UpdateRecipeView(generic.UpdateView):
+    model = Recipe
+    form_class = forms.Recipe
+    template_name = 'meal/update_recipe.html'

@@ -1,14 +1,17 @@
 @import "variables.less";
 
 .description {
-    padding: 1em;
-    background: @text-color;
-    color: @page-bg;
+    @media screen {
+        padding: 1em;
+        background: @text-color;
+        color: @page-bg;
+    }
 }
 
 
 .recipe {
     font-size: 0.8rem;
+    width: 100%;
 
     &:not(:last-child) {
         border-bottom: 2px dashed;

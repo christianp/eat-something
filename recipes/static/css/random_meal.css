@@ -1,0 +1,27 @@
+.heading {
+  font-size: 3em;
+  text-align: center;
+  margin: 2rem 0;
+}
+.meal-name {
+  font-size: 2em;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .meal-name {
+    font-size: 5em;
+  }
+}
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+}
+.buttons button {
+  flex-basis: 5em;
+  margin: 0 0.5em;
+  flex-grow: 1;
+  font-size: 2rem;
+}
+.description {
+  margin: 1rem 0;
+}

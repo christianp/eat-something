@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load font %}
 {% load load %}
+{% load time %}
 
 {% block stylesheets %}
     {{block.super}}
@@ -12,15 +13,17 @@
     {% csrf_token %}
     <input type="hidden" name="meal" value="{{meal.pk}}"/>
 
-    <header>
-        <h1 class="font-blackjack">{{category.name}}</h1>
-        <hr>
-        <h2 class="meal-name {% random_font %}">{{meal.name}}</h2>
-    </header>
+    <h1 class="meal-name font-blackjack">{{meal.name}}</h1>
+    {% if meal.time %}
+        <p>⏱ {{meal.time|timedelta}}</p>
+    {% endif %}
+    {% if meal.description %}
+        <blockquote class="description">{{meal.description}}</blockquote>
+    {% endif %}
 
     <div class="buttons">
-        <button type="submit" name="action" value="reject">Nope</button>
-        <button type="submit" name="action" value="accept">Yep</button>
+        <button class="warning" type="submit" name="action" value="reject">Nope</button>
+        <button class="primary" type="submit" name="action" value="accept">Yep</button>
     </div>
 </form>
 {% endblock content %}

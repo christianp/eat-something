@@ -40,7 +40,7 @@ body {
     }
 }
 
-header {
+#header {
     @media print {
         display: none;
     }
@@ -54,7 +54,7 @@ header {
         .food-emoji {
             font-weight: normal;
         }
-        margin: 0;
+        margin: 0.1em;
     }
     a {
         text-decoration: none;
@@ -101,6 +101,7 @@ li {
 }
 
 button, .btn {
+    font-weight: normal;
     cursor: pointer;
     display: inline-block;
     @media print {
@@ -110,10 +111,14 @@ button, .btn {
     background: lighten(@link-color,20%);
     padding: 0.2em 0.5em;
     text-decoration: none;
+    font-size: 0.9rem;
     &:not(.link) {
         color: black;
     }
-    font-size: 0.9em;
+
+    &.large {
+        font-size: 1.5rem;
+    }
 
     &.warning {
         background: @warning-bg;
@@ -179,6 +184,10 @@ form {
         border: none;
         background: #eee;
         padding: 0.6em;
+    }
+
+    textarea {
+        font-size: 0.8rem;
     }
 
 }

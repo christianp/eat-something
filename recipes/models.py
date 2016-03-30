@@ -34,11 +34,21 @@ class Meal(models.Model):
     description = models.TextField(blank=True)
     weight = models.FloatField(default=1)
 
+    class Meta:
+        ordering = ('name',)
+
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse('meal',args=(self.pk,))
+
+    @property
+    def time(self):
+        if self.recipes.exists():
+            return self.recipes.all().aggregate(time=models.Min('time'))['time']
+        else:
+            return None
 
 class Recipe(models.Model):
     meal = models.ForeignKey(Meal,related_name='recipes')

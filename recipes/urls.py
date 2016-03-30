@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^meal/(?P<pk>\d+)/add_recipe$', views.AddRecipeView.as_view(), name='meal_add_recipe'),
     url(r'^meal/(?P<pk>\d+)/delete$', views.DeleteMealView.as_view(), name='meal_delete'),
     url(r'^recipe/(?P<pk>\d+)/delete$', views.DeleteRecipeView.as_view(), name='recipe_delete'),
+    url(r'^recipe/(?P<pk>\d+)/edit$', views.UpdateRecipeView.as_view(), name='recipe_edit'),
 ]

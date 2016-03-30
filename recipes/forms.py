@@ -15,7 +15,7 @@ class Meal(ModelForm):
             'category': forms.CheckboxSelectMultiple(),
         }
 
-class CreateRecipe(ModelForm):
+class Recipe(ModelForm):
     class Meta:
         model = Recipe
         fields = ('meal','url','reference','ingredients','instructions','time')
