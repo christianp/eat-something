@@ -1,0 +1,8 @@
+{
+  "name": "Pick a meal",
+  "description": "A thing to help pick a meal",
+  "image": "heroku/python",
+  "repository": "https://github.com/christianp/pick-a-meal",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}
