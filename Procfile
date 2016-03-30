@@ -1,1 +1,1 @@
-web: gunicorn pickameal.wsgi --log-file -
+web: gunicorn pick_a_meal.wsgi --log-file -
