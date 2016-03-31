@@ -20,5 +20,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^',include('recipes.urls')),
+    url(r'^',include('django.contrib.auth.urls')),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

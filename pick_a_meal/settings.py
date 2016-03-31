@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-import dj_database_url
+try:
+    import dj_database_url
+except ImportError:
+    pass
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -120,8 +123,11 @@ USE_TZ = True
 
 
 # Update database configuration with $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+try:
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
+except NameError:
+    pass
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -140,3 +146,5 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 SCRIPT_FONTS = ['blackjack','lilly','permanent_marker','yellowtail','gidole','enriqueta']
+
+LOGIN_URL = '/login'

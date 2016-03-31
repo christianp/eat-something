@@ -127,9 +127,10 @@ button:not(.link),
 .btn:not(.link) {
   color: black;
 }
-button.large,
-.btn.large {
-  font-size: 1.5rem;
+button.submit,
+.btn.submit {
+  font-size: 1.1em;
+  width: 100%;
 }
 button.warning,
 .btn.warning {
@@ -149,10 +150,9 @@ button.full-width,
 .btn.full-width {
   width: 100%;
 }
-button.submit,
-.btn.submit {
-  font-size: 1.1em;
-  width: 100%;
+button.large,
+.btn.large {
+  font-size: 1.5rem;
 }
 button,
 .btn,

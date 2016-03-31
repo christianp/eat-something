@@ -3,6 +3,7 @@ from .models import MealCategory, Meal, Recipe
 from . import forms
 from django.views import generic
 from django.core.urlresolvers import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -48,17 +49,17 @@ class MealView(generic.DetailView):
     template_name = 'meal/detail.html'
     context_object_name = 'meal'
 
-class CreateMealView(generic.CreateView):
+class CreateMealView(LoginRequiredMixin,generic.CreateView):
     model = Meal
     form_class = forms.Meal
     template_name = 'meal/create.html'
 
-class UpdateMealView(generic.UpdateView):
+class UpdateMealView(LoginRequiredMixin,generic.UpdateView):
     model = Meal
     form_class = forms.Meal
     template_name = 'meal/update.html'
 
-class AddRecipeView(generic.CreateView):
+class AddRecipeView(LoginRequiredMixin,generic.CreateView):
     model = Recipe
     form_class = forms.Recipe
     template_name = 'meal/add_recipe.html'
@@ -77,21 +78,21 @@ class AddRecipeView(generic.CreateView):
         context['meal'] = self.meal
         return context
 
-class DeleteMealView(generic.DeleteView):
+class DeleteMealView(LoginRequiredMixin,generic.DeleteView):
     model = Meal
     template_name = 'meal/delete.html'
 
     def get_success_url(self):
         return reverse('index')
 
-class DeleteRecipeView(generic.DeleteView):
+class DeleteRecipeView(LoginRequiredMixin,generic.DeleteView):
     model = Recipe
     template_name = 'meal/delete.html'
 
     def get_success_url(self):
         return self.object.meal.get_absolute_url()
 
-class UpdateRecipeView(generic.UpdateView):
+class UpdateRecipeView(LoginRequiredMixin,generic.UpdateView):
     model = Recipe
     form_class = forms.Recipe
     template_name = 'meal/update_recipe.html'
