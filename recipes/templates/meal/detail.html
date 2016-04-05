@@ -52,7 +52,7 @@
                 {% if recipe.ingredients %}
                 <section class="ingredients">
                     <h3>Ingredients</h3>
-                    {{recipe.ingredients|markdown}}
+                    {{recipe.nice_ingredients|safe}}
                 </section>
                 {% endif %}
                 

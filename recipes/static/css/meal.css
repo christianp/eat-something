@@ -61,6 +61,16 @@
     flex-basis: 50%;
   }
 }
+.recipe .method .ingredients .line {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+.recipe .method .ingredients .line .thing {
+  font-weight: bold;
+}
+.recipe .method .ingredients .line .action {
+  font-style: italic;
+}
 .category:not(:last-child)::after {
   content: ', ';
 }

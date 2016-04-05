@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 from django.dispatch import receiver
 from random import random
+from .ingredient_parser import html_ingredients
 
 class MealCategory(models.Model):
     name = models.CharField(max_length=254)
@@ -75,3 +76,6 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         return reverse('meal',args=(self.meal.pk,))
+
+    def nice_ingredients(self):
+        return html_ingredients(self.ingredients)
