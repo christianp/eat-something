@@ -27,7 +27,7 @@ class CreateMealForm(ModelForm):
             'category': forms.CheckboxSelectMultiple(),
         }
 
-english_duration_re = re.compile(r'\s*(?:,|and)?\s*(?P<amount>\d+) (?P<unit>day|d|hour|h|minute|min|m|second|s)s?')
+english_duration_re = re.compile(r'\s*(?:,|and)?\s*(?P<amount>\d+) ?(?P<unit>day|d|hour|h|minute|min|m|second|s)s?')
 english_duration_all_re = re.compile('^(?:{})+$'.format(english_duration_re.pattern))
 time_unit_translation = {
     'day': 'day',
@@ -65,7 +65,7 @@ class CleverDurationField(forms.DurationField):
             return value
         value = parse_duration(value)
         if value is None:
-            raise ValidationError(self.error_messages['invalid'], code='invalid')
+            raise forms.ValidationError(self.error_messages['invalid'], code='invalid')
         return value
 
 class RecipeForm(ModelForm):
