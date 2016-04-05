@@ -3,7 +3,27 @@ from itertools import groupby
 import re
 from markdown2 import markdown
 
-measurements = ['lb','pound','pounds','tsp','g','kg','l','ml','litre','litres','tbsp','cup','cups','piece','pieces',]
+measurements = [
+    'lb',
+    'pound',
+    'pounds',
+    'g',
+    'kg',
+    'l',
+    'ml',
+    'litre',
+    'litres',
+    'tsp',
+    'teaspoon',
+    'teaspoons',
+    'tbsp',
+    'tablespoon',
+    'tablespoons',
+    'cup',
+    'cups',
+    'piece',
+    'pieces',
+]
 
 def analyse_line(line):
     w = TextBlob(line)
