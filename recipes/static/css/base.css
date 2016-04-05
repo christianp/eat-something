@@ -77,6 +77,16 @@
   display: block;
   margin: 0;
 }
+#footer {
+  margin-top: 4rem;
+  color: #ccc;
+  text-align: center;
+}
+@media print {
+  #footer .login {
+    display: none;
+  }
+}
 .content {
   margin: 0 auto;
 }
