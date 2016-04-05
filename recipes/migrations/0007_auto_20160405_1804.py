@@ -10,17 +10,13 @@ def set_added_by(apps, schema_editor):
     Recipe = apps.get_model('recipes','Recipe')
 
     u = User.objects.first()
-    print(u)
 
     for meal in Meal.objects.all():
         meal.added_by = u
-        print(meal)
         meal.save()
 
-    print(Recipe.objects.count())
     for recipe in Recipe.objects.all():
         recipe.added_by = u
-        print(recipe)
         recipe.save()
 
 
