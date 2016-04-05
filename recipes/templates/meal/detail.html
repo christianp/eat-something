@@ -16,6 +16,7 @@
     <a class="pull-right btn link large" title="Edit this meal" href="{% url 'meal_edit' meal.pk %}">🖉</a>
 </h1>
 <h2 class="subtitle categories">{% for category in meal.category.all %}<span class="category"><a href="{{category.get_absolute_url}}">{{category.name}}</a></span>{% endfor %}</h2>
+<h3 class="subtitle added-by">Added by {{meal.added_by}}</h3>
 
 {% if meal.description %}
 <div class="description">{{meal.description}}</div>
@@ -36,8 +37,11 @@
                 <section class="url">
                     <p>🔗 <a target="_blank" href="{{recipe.url}}">{{recipe.url}}</a></p>
                 </section>
+                {% endif %}
+                <section class="added-by">
+                    <p>Added by {{recipe.added_by}}</p>
+                </section>
             </header>
-            {% endif %}
             {% if recipe.reference %}
             <section class="reference">
                 <p><cite>{{recipe.reference}}</cite></p>
