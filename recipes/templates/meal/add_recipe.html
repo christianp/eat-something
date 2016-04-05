@@ -6,6 +6,7 @@
     <h1>{% block content_title %}Add a recipe for {{meal.name}}{% endblock %}</h1>
     <form method="POST" action="">
         {% csrf_token %}
+        {{form.errors}}
         {% for field in form.hidden_fields %}{{field}}{% endfor %}
         {% for field in form.visible_fields %}
         <div class="form-group">

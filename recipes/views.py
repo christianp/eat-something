@@ -51,17 +51,22 @@ class MealView(generic.DetailView):
 
 class CreateMealView(LoginRequiredMixin,generic.CreateView):
     model = Meal
-    form_class = forms.Meal
+    form_class = forms.CreateMealForm
     template_name = 'meal/create.html'
+
+    def get_initial(self,*args):
+        data = super(CreateMealView,self).get_initial(*args)
+        data['added_by'] = self.request.user.pk
+        return data
 
 class UpdateMealView(LoginRequiredMixin,generic.UpdateView):
     model = Meal
-    form_class = forms.Meal
+    form_class = forms.MealForm
     template_name = 'meal/update.html'
 
 class AddRecipeView(LoginRequiredMixin,generic.CreateView):
     model = Recipe
-    form_class = forms.Recipe
+    form_class = forms.CreateRecipeForm
     template_name = 'meal/add_recipe.html'
 
     def dispatch(self,request,pk,*args):
@@ -71,6 +76,7 @@ class AddRecipeView(LoginRequiredMixin,generic.CreateView):
     def get_initial(self,*args):
         data = super(AddRecipeView,self).get_initial(*args)
         data['meal'] = self.meal.pk
+        data['added_by'] = self.request.user
         return data
 
     def get_context_data(self,*args,**kwargs):
@@ -94,5 +100,5 @@ class DeleteRecipeView(LoginRequiredMixin,generic.DeleteView):
 
 class UpdateRecipeView(LoginRequiredMixin,generic.UpdateView):
     model = Recipe
-    form_class = forms.Recipe
+    form_class = forms.RecipeForm
     template_name = 'meal/update_recipe.html'

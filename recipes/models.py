@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 from django.dispatch import receiver
@@ -36,6 +37,7 @@ class Meal(models.Model):
     name = models.CharField(max_length=254)
     description = models.TextField(blank=True)
     weight = models.FloatField(default=1)
+    added_by = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
 
     class Meta:
         ordering = ('name',)
@@ -60,6 +62,7 @@ class Recipe(models.Model):
     ingredients = models.TextField(blank=True)
     instructions = models.TextField(blank=True)
     time = models.DurationField()
+    added_by = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
 
     def __str__(self):
         return 'Recipe for {}'.format(self.meal.name)
