@@ -4,6 +4,25 @@ from django import forms
 from django.utils import dateparse
 import re
 import datetime
+from django.utils.html import conditional_escape, format_html, html_safe
+
+class ButtonChoiceInput(forms.widgets.CheckboxChoiceInput):
+    def render(self, name=None, value=None, attrs=None):
+        if self.id_for_label:
+            label_for = format_html(' for="{}"', self.id_for_label)
+        else:
+            label_for = ''
+        attrs = dict(self.attrs, **attrs) if attrs else self.attrs
+        return format_html(
+            '<label{}>{} <span class="btn large full-width">{}</span></label>', label_for, self.tag(attrs), self.choice_label
+        )
+
+class ButtonFieldRenderer(forms.widgets.ChoiceFieldRenderer):
+    choice_input_class = ButtonChoiceInput
+    outer_html = '<ul{id_attr} class="button-choice-input">{content}</ul>'
+
+class ButtonSelectMultiple(forms.CheckboxSelectMultiple):
+    renderer = ButtonFieldRenderer
 
 class CreateRecipe(ModelForm):
     class Meta:
@@ -15,7 +34,7 @@ class MealForm(ModelForm):
         model = Meal
         fields = ('name','description','category')
         widgets = {
-            'category': forms.CheckboxSelectMultiple(),
+            'category': ButtonSelectMultiple(),
         }
 
 class CreateMealForm(ModelForm):
@@ -24,7 +43,7 @@ class CreateMealForm(ModelForm):
         fields = ('name','description','category','added_by')
         widgets = {
             'added_by': forms.HiddenInput(),
-            'category': forms.CheckboxSelectMultiple(),
+            'category': ButtonSelectMultiple(),
         }
 
 english_duration_re = re.compile(r'\s*(?:,|and)?\s*(?P<amount>\d+) ?(?P<unit>day|d|hour|h|minute|min|m|second|s)s?')

@@ -126,6 +126,7 @@ button,
   padding: 0.2em 0.5em;
   text-decoration: none;
   font-size: 0.9rem;
+  text-align: center;
 }
 @media print {
   button,
@@ -216,4 +217,11 @@ hr {
     border: 1px solid;
     margin: 0.5em 0;
   }
+}
+.button-choice-input input[type="checkbox"] {
+  display: none;
+}
+.button-choice-input input[type="checkbox"]:checked + .btn {
+  background: #39ac39;
+  color: #ffffff;
 }
