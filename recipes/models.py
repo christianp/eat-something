@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.text import slugify
 from django.dispatch import receiver
 from random import random
@@ -57,7 +57,7 @@ class Meal(models.Model):
             return None
 
 class Recipe(models.Model):
-    meal = models.ForeignKey(Meal,related_name='recipes')
+    meal = models.ForeignKey(Meal,related_name='recipes',on_delete=models.CASCADE)
     url = models.URLField(blank=True,help_text='URL of the recipe')
     reference = models.CharField(max_length=254,blank=True,help_text='A page number in a book')
     ingredients = models.TextField(blank=True)

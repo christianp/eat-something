@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .models import MealCategory, Meal, Recipe
 from . import forms
 from django.views import generic
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
