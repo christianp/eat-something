@@ -35,6 +35,7 @@ def set_slug_pre_save(sender,instance,**kwargs):
 # Create your models here.
 class Meal(models.Model):
     category = models.ManyToManyField(MealCategory,related_name='meals')
+    emoji = models.CharField(max_length=12,blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField(blank=True)
     weight = models.FloatField(default=1)

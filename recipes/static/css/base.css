@@ -225,3 +225,6 @@ hr {
   background: #39ac39;
   color: #ffffff;
 }
+#id_emoji {
+    width: 4em;
+}

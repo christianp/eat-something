@@ -14,12 +14,12 @@ class CreateRecipe(ModelForm):
 class MealForm(ModelForm):
     class Meta:
         model = Meal
-        fields = ('name','description','category')
+        fields = ('emoji','name','description','category')
 
 class CreateMealForm(ModelForm):
     class Meta:
         model = Meal
-        fields = ('name','description','category','added_by')
+        fields = ('emoji','name','description','category','added_by')
         widgets = {
             'added_by': forms.HiddenInput(),
         }
