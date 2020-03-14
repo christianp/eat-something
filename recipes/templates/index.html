@@ -10,7 +10,7 @@
             <h2>{{category.name.capitalize}} - <a href="{% url 'random_meal' category.slug %}">random</a></h2>
             <ul>
                 {% for meal in category.meals.all %}
-                <li><a href="{% url 'meal' meal.pk %}">{{meal.name}}</a></li>
+                <li><a href="{% url 'meal' meal.pk %}">{{meal.emoji}} {{meal.name}}</a></li>
                 {% endfor %}
             </ul>
         </div>
