@@ -24,5 +24,5 @@ def timedelta(t):
     if len(s)>1:
         s = '{} and {}'.format(s,bits[-1])
     else:
-        s = bits[0]
+        s = bits[0] if len(bits)>0 else ''
     return s
